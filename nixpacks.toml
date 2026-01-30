@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["nodejs_20"]
+
+[phases.install]
+cmds = ["corepack enable && yarn install"]
+
+[phases.build]
+cmds = ["yarn build"]
+
+[start]
+cmd = "npx medusa db:migrate && yarn start"
