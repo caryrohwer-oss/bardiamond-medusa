@@ -1,6 +1,6 @@
 {
-  "name": "bardiamond-medusa",
-  "version": "1.0.0",
+  "name": "medusa-starter-default",
+  "version": "0.0.1",
   "description": "Bar Diamond e-commerce backend powered by Medusa v2",
   "author": "Bar Diamond, Inc.",
   "license": "MIT",
