@@ -8,4 +8,4 @@ cmds = ["yarn install"]
 cmds = ["yarn build"]
 
 [start]
-cmd = "npx medusa db:migrate && npx medusa exec ./src/scripts/seed.ts && yarn start"
+cmd = "npx medusa db:migrate && yarn seed && yarn start"
