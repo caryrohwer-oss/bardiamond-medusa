@@ -306,9 +306,9 @@ export default async function seedBarDiamond({ container }: ExecArgs) {
     fields: ["id", "name"],
   });
 
-  let stockLocation = stockLocations?.[0];
+  let stockLocationId = stockLocations?.[0]?.id;
 
-  if (!stockLocation) {
+  if (!stockLocationId) {
     logger.info("Creating stock location...");
     const { result } = await createStockLocationsWorkflow(container).run({
       input: {
@@ -324,18 +324,18 @@ export default async function seedBarDiamond({ container }: ExecArgs) {
         ],
       },
     });
-    stockLocation = result[0];
+    stockLocationId = result[0].id;
 
     await linkSalesChannelsToStockLocationWorkflow(container).run({
       input: {
-        id: stockLocation.id,
+        id: stockLocationId,
         add: [salesChannels[0].id],
       },
     });
 
     await link.create({
       [Modules.STOCK_LOCATION]: {
-        stock_location_id: stockLocation.id,
+        stock_location_id: stockLocationId,
       },
       [Modules.FULFILLMENT]: {
         fulfillment_provider_id: "manual_manual",
@@ -400,7 +400,7 @@ export default async function seedBarDiamond({ container }: ExecArgs) {
     await createInventoryLevelsWorkflow(container).run({
       input: {
         inventory_levels: inventoryItems.map((item) => ({
-          location_id: stockLocation.id,
+          location_id: stockLocationId,
           stocked_quantity: 100,
           inventory_item_id: item.id,
         })),

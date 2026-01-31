@@ -84,14 +84,14 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
 
     // Get or create stock location
     const { data: stockLocations } = await query.graph({ entity: "stock_location", fields: ["id"] });
-    let stockLocation = stockLocations?.[0];
-    if (!stockLocation) {
+    let stockLocationId = stockLocations?.[0]?.id;
+    if (!stockLocationId) {
       const { result } = await createStockLocationsWorkflow(req.scope).run({
         input: { locations: [{ name: "Bar Diamond Warehouse", address: { city: "Parma", country_code: "US", address_1: "PO Box 68" } }] },
       });
-      stockLocation = result[0];
+      stockLocationId = result[0].id;
       await linkSalesChannelsToStockLocationWorkflow(req.scope).run({
-        input: { id: stockLocation.id, add: [salesChannels[0].id] },
+        input: { id: stockLocationId, add: [salesChannels[0].id] },
       });
     }
 
