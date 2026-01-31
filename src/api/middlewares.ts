@@ -7,7 +7,7 @@ export default defineMiddlewares({
       middlewares: [],
     },
     {
-      matcher: "/admin/seed-products",
+      matcher: "/seed",
       middlewares: [],
     },
   ],

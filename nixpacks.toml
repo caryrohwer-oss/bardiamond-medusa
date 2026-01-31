@@ -8,4 +8,4 @@ cmds = ["yarn install --no-immutable"]
 cmds = ["yarn build"]
 
 [start]
-cmd = "npx medusa db:migrate && npx medusa exec ./src/scripts/seed-bardiamond.ts && yarn start"
+cmd = "npx medusa db:migrate && yarn start"
