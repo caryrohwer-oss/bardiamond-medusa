@@ -6,5 +6,9 @@ export default defineMiddlewares({
       matcher: "/setup",
       middlewares: [],
     },
+    {
+      matcher: "/admin/seed-products",
+      middlewares: [],
+    },
   ],
 });
