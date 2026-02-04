@@ -10,5 +10,10 @@ export default defineMiddlewares({
       matcher: "/seed",
       middlewares: [],
     },
+    {
+      // WordPress customer login endpoint - no auth required
+      matcher: "/store/auth/login",
+      middlewares: [],
+    },
   ],
 });
